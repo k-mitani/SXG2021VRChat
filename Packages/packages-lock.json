@@ -153,6 +153,13 @@
       },
       "hash": "9205b40abe76b5cfb6b3dd2a35effa30ecf4ff79"
     },
+    "com.vrchat.udonsharp": {
+      "version": "https://github.com/vrchat-community/UdonSharp.git?path=/Packages/com.vrchat.UdonSharp#1.0.1",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "26d68127049702a597380f9be3ee228402df4dc3"
+    },
     "com.vrchat.worlds": {
       "version": "https://github.com/vrchat/packages.git?path=/packages/com.vrchat.worlds#vcc",
       "depth": 0,
