@@ -15,9 +15,14 @@ public class SearchRange : UdonSharpBehaviour
     {
         if (other.name.Equals("FishingHook"))
         {
-            Networking.IsOwner(Networking.LocalPlayer, other.transform.parent.gameObject);
-            var shadow = transform.parent.GetComponent<FishShadow>();
-            shadow.target = other.transform;
+            var hook = other.GetComponent<FishingHook>();
+            //var isInWater = hook.isInWater;
+            var isOwnedHook = Networking.IsOwner(Networking.LocalPlayer, other.transform.parent.gameObject);
+            if (isOwnedHook)
+            {
+                var shadow = transform.parent.GetComponent<FishShadow>();
+                shadow.target = hook;
+            }
         }
     }
     private void OnTriggerExit(Collider other)
