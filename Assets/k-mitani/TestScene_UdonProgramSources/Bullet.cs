@@ -8,22 +8,26 @@ public class Bullet : UdonSharpBehaviour
 {
     private Rigidbody rb;
     private ParticleSystem particle;
+    private new SphereCollider collider;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         particle = GetComponent<ParticleSystem>();
+        collider = GetComponent<SphereCollider>();
     }
 
     internal void OnShoot(Gun gun)
     {
+        // 着弾時に他のペイント弾とぶつからないようにしていたのを元に戻す。
+        collider.enabled = true;
+
         transform.position = gun.transform.position + gun.transform.forward * 0.2f;
         transform.rotation = gun.transform.rotation;
         rb.angularVelocity = Vector3.zero;
-        rb.velocity = gun.transform.forward * 5;
+        rb.velocity = gun.transform.forward * 6;
         rb.transform.Find("Paint").gameObject.SetActive(false);
         particle.Stop();
         SendCustomNetworkEvent(VRC.Udon.Common.Interfaces.NetworkEventTarget.All, "HidePaint");
-        RequestSerialization();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -31,6 +35,9 @@ public class Bullet : UdonSharpBehaviour
         if (Networking.IsOwner(gameObject))
         {
             transform.forward = -collision.contacts[0].normal;
+
+            // 他のペイント弾とぶつからないようにする。
+            collider.enabled = false;
 
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
@@ -45,6 +52,12 @@ public class Bullet : UdonSharpBehaviour
 
     public void ShowPaint()
     {
+        // 他のペイント弾とぶつからないようにする。
+        collider.enabled = false;
+
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
         particle.Play();
         var paint = transform.Find("Paint");
         paint.gameObject.SetActive(true);
@@ -53,6 +66,7 @@ public class Bullet : UdonSharpBehaviour
 
     public void HidePaint()
     {
+        rb.isKinematic = false;
         particle.Stop();
         transform.Find("Paint").gameObject.SetActive(false);
     }
