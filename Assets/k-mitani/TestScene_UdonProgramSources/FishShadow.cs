@@ -38,8 +38,7 @@ public class FishShadow : UdonSharpBehaviour
         {
             isMoving = true;
 
-
-            if (target != null && target.isInWater)
+            if (target != null && target.isInWater && Networking.IsOwner(target.gameObject))
             {
                 transform.LookAt(target.transform);
                 if (isHooked)

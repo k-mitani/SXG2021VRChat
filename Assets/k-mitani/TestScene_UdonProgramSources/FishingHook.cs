@@ -1,5 +1,4 @@
 
-using System;
 using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
@@ -17,9 +16,9 @@ public class FishingHook : UdonSharpBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name.Equals("FishShadow"))
+        var shadow = collision.gameObject.GetComponent<FishShadow>();
+        if (shadow != null)
         {
-            var shadow = collision.gameObject.GetComponent<FishShadow>();
             shadow.OnCollideWithHook(this);
 
             // 食いついていたら大きめのパーティクルを使う。
@@ -55,8 +54,10 @@ public class FishingHook : UdonSharpBehaviour
                 fish.OnCatched();
                 hookedFishes[i] = null;
                 var catchedFish = fishManager.GetNewFish();
+                catchedFish.transform.Rotate(Vector3.up * Random.value * 360);
                 catchedFish.hook = this;
                 catchedFish.isPickedUp = false;
+                Networking.SetOwner(Networking.LocalPlayer, catchedFish.gameObject);
             }
         }
     }

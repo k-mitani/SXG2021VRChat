@@ -17,7 +17,7 @@ public class SearchRange : UdonSharpBehaviour
         {
             var hook = other.GetComponent<FishingHook>();
             //var isInWater = hook.isInWater;
-            var isOwnedHook = Networking.IsOwner(Networking.LocalPlayer, other.transform.parent.gameObject);
+            var isOwnedHook = Networking.IsOwner(Networking.LocalPlayer, hook.gameObject);
             if (isOwnedHook)
             {
                 var shadow = transform.parent.GetComponent<FishShadow>();

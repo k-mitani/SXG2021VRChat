@@ -50,6 +50,22 @@ public class Bullet : UdonSharpBehaviour
         }
     }
 
+    // 20220617 なぜか動かないのでとりあえずコメントアウト
+    //public override void OnPlayerCollisionEnter(VRCPlayerApi player)
+    //{
+    //    if (Networking.IsOwner(gameObject))
+    //    {
+    //        particle.Play();
+    //        gameObject.SetActive(false);
+    //        SendCustomNetworkEvent(VRC.Udon.Common.Interfaces.NetworkEventTarget.All, "HitPlayer");
+    //    }
+    //}
+    //public void HitPlayer()
+    //{
+    //    particle.Play();
+    //    gameObject.SetActive(false);
+    //}
+
     public void ShowPaint()
     {
         // 他のペイント弾とぶつからないようにする。
@@ -66,6 +82,8 @@ public class Bullet : UdonSharpBehaviour
 
     public void HidePaint()
     {
+        gameObject.SetActive(true);
+
         rb.isKinematic = false;
         particle.Stop();
         transform.Find("Paint").gameObject.SetActive(false);
