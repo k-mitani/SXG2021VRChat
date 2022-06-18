@@ -14,6 +14,14 @@ public class Water : UdonSharpBehaviour
             var hook = other.gameObject.GetComponent<FishingHook>();
             hook.OnEnterWater();
         }
+        else
+        {
+            var seg = other.gameObject.GetComponent<UdonMenSegment>();
+            if (seg != null)
+            {
+                seg.OnEnterWater();
+            }
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -24,6 +32,14 @@ public class Water : UdonSharpBehaviour
             var hook = other.gameObject.GetComponent<FishingHook>();
             hook.isInWater = false;
             hook.OnExitWater();
+        }
+        else
+        {
+            var seg = other.gameObject.GetComponent<UdonMenSegment>();
+            if (seg != null)
+            {
+                seg.OnExitWater();
+            }
         }
     }
 }
