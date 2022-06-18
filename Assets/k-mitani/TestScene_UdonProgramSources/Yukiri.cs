@@ -19,6 +19,24 @@ public class Yukiri : UdonSharpBehaviour
         SendCustomNetworkEvent(VRC.Udon.Common.Interfaces.NetworkEventTarget.All, "DropUdonTama");
     }
 
+    public override void OnPickup()
+    {
+        if (!Networking.LocalPlayer.IsUserInVR())
+        {
+            var rot = transform.rotation.eulerAngles;
+            transform.rotation = Quaternion.Euler(0, rot.y, 0);
+        }
+    }
+
+    public override void OnDrop()
+    {
+        if (!Networking.LocalPlayer.IsUserInVR())
+        {
+            var rot = transform.rotation.eulerAngles;
+            transform.rotation = Quaternion.Euler(-180, rot.y, 0);
+        }
+    }
+
     public void DropUdonTama()
     {
         var tama = manager.GetNewUdonTama();
