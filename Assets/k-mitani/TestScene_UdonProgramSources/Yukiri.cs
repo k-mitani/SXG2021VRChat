@@ -40,6 +40,7 @@ public class Yukiri : UdonSharpBehaviour
     public void DropUdonTama()
     {
         var tama = manager.GetNewUdonTama();
+        tama.gameObject.SetActive(true);
         for (int i = 0; i < tama.childCount; i++)
         {
             var men = tama.GetChild(i);
