@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: WorldAudioSettings
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 9fc2ba2847ed3d64a859b70325b695ba,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 624e860b7ddb32641af589ac3e221401,
     type: 2}
   udonAssembly: 
   assemblyError: 
