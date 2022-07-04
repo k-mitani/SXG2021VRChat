@@ -14,13 +14,14 @@ public class TuyuJaguchi : UdonSharpBehaviour
     public GameObject tuyu2;
     public GameObject tuyu3;
     public GameObject tuyu4;
+    public GameObject tuyu5;
     private GameObject[] tuyus;
     public int currentTuyuLevel = 0;
 
     void Start()
     {
         particle = GetComponent<ParticleSystem>();
-        tuyus = new[] { tuyu1, tuyu2, tuyu3, tuyu4 };
+        tuyus = new[] { tuyu1, tuyu2, tuyu3, tuyu4, tuyu5 };
     }
 
     internal void OnEat()
