@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: Gun Udon C# Program Asset
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 360a5a16c532e0d4aba59feec9af1c33,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 972fbffa8b357aa4ba989e2e57171233,
     type: 2}
   udonAssembly: 
   assemblyError: 
