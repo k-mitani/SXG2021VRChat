@@ -24,5 +24,7 @@ public class Donburi : UdonSharpBehaviour
     {
         udonTama.SetActive(false);
         jaguchi.OnEat();
+
+        GetComponent<ParticleSystem>().Stop();
     }
 }

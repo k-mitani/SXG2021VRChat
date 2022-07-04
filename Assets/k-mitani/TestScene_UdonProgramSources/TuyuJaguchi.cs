@@ -16,12 +16,15 @@ public class TuyuJaguchi : UdonSharpBehaviour
     public GameObject tuyu4;
     public GameObject tuyu5;
     private GameObject[] tuyus;
+    private Donburi donburi;
     public int currentTuyuLevel = 0;
 
     void Start()
     {
         particle = GetComponent<ParticleSystem>();
         tuyus = new[] { tuyu1, tuyu2, tuyu3, tuyu4, tuyu5 };
+
+        donburi = transform.parent.Find("Donburi").GetComponent<Donburi>();
     }
 
     internal void OnEat()
@@ -32,6 +35,7 @@ public class TuyuJaguchi : UdonSharpBehaviour
         }
         currentTuyuLevel = 0;
         openDuration = 0;
+        donburi.GetComponent<ParticleSystem>().Stop();
     }
 
     public override void Interact()
@@ -75,6 +79,9 @@ public class TuyuJaguchi : UdonSharpBehaviour
                 if (currentTuyuLevel > 0) tuyus[currentTuyuLevel - 1].SetActive(false);
                 tuyus[currentTuyuLevel].SetActive(true);
                 if (currentTuyuLevel < tuyus.Length - 1) currentTuyuLevel++;
+
+                var yuge = donburi.GetComponent<ParticleSystem>();
+                if (!yuge.isPlaying) yuge.Play();
             }
         }
     }
